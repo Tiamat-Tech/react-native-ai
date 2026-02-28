@@ -13,7 +13,6 @@ const colors = {
   matrixBlack: '#0d0d0d',
   pinkPrimary: '#e91e8c',
   pinkBackground: '#fff0f6',
-  pinkDark: '#ad1457',
   pinkMuted: 'rgba(233, 30, 140, .4)'
 }
 
