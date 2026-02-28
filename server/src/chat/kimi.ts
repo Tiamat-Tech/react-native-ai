@@ -48,15 +48,8 @@ export const kimi = asyncHandler(async (req: Request, res: Response) => {
 
         let chunk = decoder.decode(value)
         if (brokenLine) {
-          try {
-            const { choices } = JSON.parse(brokenLine)
-            const { delta } = choices[0]
-            const { content } = delta
-            if (content) {
-              res.write(`data: ${JSON.stringify(content)}\n\n`)
-            }
-            brokenLine = ''
-          } catch (err) {}
+          chunk = brokenLine + chunk
+          brokenLine = ''
         }
 
         const lines = chunk.split("data: ")
@@ -80,7 +73,7 @@ export const kimi = asyncHandler(async (req: Request, res: Response) => {
             const { delta } = choices[0]
             const { content } = delta
             if (content) {
-              res.write(`data: ${JSON.stringify(delta)}\n\n`)
+              res.write(`data: ${JSON.stringify(content)}\n\n`)
             }
           }
       }
